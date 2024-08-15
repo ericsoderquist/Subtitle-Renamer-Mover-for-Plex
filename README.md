@@ -6,13 +6,13 @@
 
 Welcome to the **Subtitle Renamer & Mover** tool! This handy tool is designed to help you organize your media files, especially when you're adding content to Plex Media Server. Plex requires subtitles to be in a specific format: the subtitle files must be in the same folder as the video files, and they need to be named exactly like the corresponding episode file, with the addition of a language code (e.g., `.en.srt` for English subtitles).
 
-If you have a collection of media files where the subtitles are located in a separate subfolder and are not named correctly, this tool will make your life much easier by automatically renaming and moving the subtitle files to the correct location.
+If you have a collection of media files where the subtitles are located in a separate subfolder and are not named correctly, this tool will make your life much easier by automatically renaming and moving the subtitle files to the correct location. If the script encounters a subtitle file with an unrecognized language code, it will automatically default to English (`.en.srt`).
 
 ---
 
 ### What Does This Tool Do?
 
-- **Renames Subtitles**: It renames subtitle files so they match the corresponding episode file name, followed by the correct language code.
+- **Renames Subtitles**: It renames subtitle files so they match the corresponding episode file name, followed by the correct language code. If the language code is unrecognized, it defaults to English (`.en.srt`).
 - **Moves Subtitles**: It moves the renamed subtitle files from their subfolder to the main folder where the video files are located.
 - **Supports Multiple Languages**: It automatically detects and renames subtitles in many different languages.
 
@@ -93,6 +93,8 @@ Show Name
 │   └── Subs (optional: this can be deleted after processing)
 ```
 
+> **Note**: If a subtitle file does not follow the expected naming convention (e.g., missing or incorrect language code), the script will rename it to default to English (`.en.srt`).
+
 ---
 
 ### Language Support
@@ -110,14 +112,14 @@ This tool supports a wide range of languages. Here are some examples of the supp
 - **Arabic**: `.ar.srt`
 - **Portuguese**: `.pt.srt`
 
-And many more! The script automatically detects the language based on the file name and renames it accordingly.
+And many more! The script automatically detects the language based on the file name and renames it accordingly. If the language code is not recognized, it defaults to English.
 
 ---
 
 ### Troubleshooting
 
 - **Python Not Found**: If you get an error that Python isn’t recognized, make sure it’s properly installed and added to your PATH.
-- **Incorrect File Names**: Ensure your subtitles follow the expected naming convention with a three-letter language code (e.g., `2_eng.srt`). If the naming convention is different, the script might need adjustments.
+- **Incorrect File Names**: If your subtitle files don’t follow the expected naming convention or lack a language code, the script will default to renaming these subtitles as English (`.en.srt`). If this is not desired, consider renaming the files manually before running the script.
 - **Folders Not Selected**: If nothing happens after you select the folder, make sure you selected the correct main folder that contains all the season folders.
 
 ---

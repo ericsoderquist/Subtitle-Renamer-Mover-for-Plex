@@ -69,10 +69,14 @@ def rename_and_move_subtitles(root_folder):
                             if sub_file.endswith('.srt'):
                                 old_sub_path = os.path.join(episode_sub_path, sub_file)
                                 # Extract language code from the subtitle file name
-                                base_name = sub_file.split('_')[0]  # e.g., "2_eng" -> "eng"
-                                language_code = base_name.split('.')[0]  # in case the base name has a period
-                                # Convert three-letter code to two-letter code if necessary
-                                language_code = language_mapping.get(language_code, language_code)
+                                parts = sub_file.split('_')
+                                if len(parts) > 1:
+                                    lang_key = parts[1].split('.')[0]  # "2_eng.srt" -> "eng"
+                                    # Convert three-letter code to two-letter code if necessary
+                                    language_code = language_mapping.get(lang_key, "en")
+                                else:
+                                    # Default to "en" if no language code is detected
+                                    language_code = "en"
                                 # Construct the new subtitle name based on the episode folder name and language code
                                 new_sub_name = f"{episode_sub_folder}.{language_code}.srt"
                                 new_sub_path = os.path.join(season_path, new_sub_name)
@@ -96,4 +100,3 @@ select_button.pack(pady=20)
 
 # Run the Tkinter event loop
 root.mainloop()
-
